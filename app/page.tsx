@@ -29,6 +29,21 @@ export default function CommuneStopDeskChecker() {
   const [error, setError] = useState<string | null>(null);
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Add keyboard shortcut handler
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Check for / key or Cmd/Ctrl + K
+      if (e.key === '/' || (e.key === 'k' && (e.metaKey || e.ctrlKey))) {
+        e.preventDefault();
+        inputRef.current?.focus();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // Load commune data from JSON file
   useEffect(() => {
@@ -207,6 +222,7 @@ export default function CommuneStopDeskChecker() {
           <CardContent>
             <div className="relative">
               <Input
+                ref={inputRef}
                 type="text"
                 placeholder="Type commune name..."
                 value={searchTerm}
