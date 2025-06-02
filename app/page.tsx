@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import Fuse from 'fuse.js';
 
 type Commune = {
   nom: string;
@@ -59,16 +60,37 @@ export default function CommuneStopDeskChecker() {
     }));
   }, [communeData]);
 
-  // Filter communes based on search term
+  // Initialize Fuse instance
+  const fuse = useMemo(() => {
+    return new Fuse(communes, {
+      keys: [{
+        name: 'data.nom',
+        getFn: (obj) => {
+          return obj.data.nom
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '') // Remove diacritics
+            .toLowerCase();
+        }
+      }],
+      threshold: 0.3,
+      includeScore: true,
+    });
+  }, [communes]);
+
+  // Filter communes based on search term using Fuse.js
   const filteredCommunes = useMemo(() => {
     if (!searchTerm.trim()) return [];
 
-    return communes
-      .filter((commune) =>
-        commune.data.nom.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+    const normalizedSearchTerm = searchTerm
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '') // Remove diacritics
+      .toLowerCase();
+
+    const results = fuse.search(normalizedSearchTerm);
+    return results
+      .map(result => result.item)
       .slice(0, 10); // Limit to 10 results for performance
-  }, [searchTerm, communes]);
+  }, [searchTerm, fuse]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (!showResults) return;
