@@ -1,103 +1,305 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useState, useMemo, useEffect, useRef } from "react";
+import { Search, CheckCircle, XCircle, MapPin, Loader2 } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+
+type Commune = {
+  nom: string;
+  wilaya_id: number;
+  code_postal: string;
+  has_stop_desk: number;
+};
+
+type CommuneData = Record<string, Commune>;
+
+export default function CommuneStopDeskChecker() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCommune, setSelectedCommune] = useState<{
+    id: string;
+    data: Commune;
+  } | null>(null);
+  const [showResults, setShowResults] = useState(false);
+  const [communeData, setCommuneData] = useState<CommuneData>({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [focusedIndex, setFocusedIndex] = useState(-1);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Load commune data from JSON file
+  useEffect(() => {
+    const loadCommuneData = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("/data/communes.json");
+        if (!response.ok) {
+          throw new Error("Failed to load commune data");
+        }
+        const data = await response.json();
+        setCommuneData(data);
+      } catch (err) {
+        setError("Failed to load commune data. Please try again later.");
+        console.error("Error loading commune data:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadCommuneData();
+  }, []);
+
+  // Convert the data to a more usable format
+  const communes = useMemo(() => {
+    return Object.entries(communeData).map(([id, data]) => ({
+      id,
+      data: data as Commune,
+    }));
+  }, [communeData]);
+
+  // Filter communes based on search term
+  const filteredCommunes = useMemo(() => {
+    if (!searchTerm.trim()) return [];
+
+    return communes
+      .filter((commune) =>
+        commune.data.nom.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+      .slice(0, 10); // Limit to 10 results for performance
+  }, [searchTerm, communes]);
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!showResults) return;
+
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        setFocusedIndex((prev) => {
+          const newIndex = prev < filteredCommunes.length - 1 ? prev + 1 : prev;
+          // Scroll the focused item into view after state update
+          setTimeout(() => {
+            const focusedElement = dropdownRef.current?.children[newIndex] as HTMLElement;
+            focusedElement?.scrollIntoView({ block: "nearest" });
+          }, 0);
+          return newIndex;
+        });
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        setFocusedIndex((prev) => {
+          const newIndex = prev > 0 ? prev - 1 : prev;
+          // Scroll the focused item into view after state update
+          setTimeout(() => {
+            const focusedElement = dropdownRef.current?.children[newIndex] as HTMLElement;
+            focusedElement?.scrollIntoView({ block: "nearest" });
+          }, 0);
+          return newIndex;
+        });
+        break;
+      case "Enter":
+        e.preventDefault();
+        if (focusedIndex >= 0 && focusedIndex < filteredCommunes.length) {
+          handleSelectCommune(filteredCommunes[focusedIndex]);
+        }
+        break;
+      case "Escape":
+        e.preventDefault();
+        setShowResults(false);
+        setFocusedIndex(-1);
+        break;
+    }
+  };
+
+  const handleSearch = (value: string) => {
+    setSearchTerm(value);
+    setShowResults(value.length > 0);
+    setSelectedCommune(null);
+    setFocusedIndex(-1);
+  };
+
+  const handleSelectCommune = (commune: { id: string; data: Commune }) => {
+    setSelectedCommune(commune);
+    setSearchTerm(commune.data.nom);
+    setShowResults(false);
+  };
+
+  const clearSelection = () => {
+    setSelectedCommune(null);
+    setSearchTerm("");
+    setShowResults(false);
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+        <Card className="w-96">
+          <CardContent className="flex items-center justify-center p-8">
+            <div className="text-center">
+              <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-blue-600" />
+              <p className="text-gray-600">Loading commune data...</p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+        <Card className="w-96">
+          <CardContent className="p-8">
+            <Alert className="border-red-200 bg-red-50">
+              <XCircle className="w-4 h-4 text-red-600" />
+              <AlertDescription className="text-red-800">
+                {error}
+              </AlertDescription>
+            </Alert>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+      <div className="max-w-2xl mx-auto">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Commune Stop Desk Checker
+          </h1>
+          <p className="text-gray-600">
+            Search for Algerian communes and check if they have a stop desk
+          </p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Search className="w-5 h-5" />
+              Search Commune
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="relative">
+              <Input
+                type="text"
+                placeholder="Type commune name..."
+                value={searchTerm}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleSearch(e.target.value)}
+                onKeyDown={handleKeyDown}
+                className="w-full"
+              />
+
+              {showResults && filteredCommunes.length > 0 && (
+                <div
+                  ref={dropdownRef}
+                  className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto"
+                >
+                  {filteredCommunes.map((commune, index) => (
+                    <div
+                      key={commune.id}
+                      className={`px-4 py-2 cursor-pointer border-b border-gray-100 last:border-b-0 ${
+                        index === focusedIndex ? "bg-blue-50" : "hover:bg-gray-50"
+                      }`}
+                      onClick={() => handleSelectCommune(commune)}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <div className="font-medium">{commune.data.nom}</div>
+                          <div className="text-sm text-gray-500">
+                            Wilaya {commune.data.wilaya_id} •{" "}
+                            {commune.data.code_postal}
+                          </div>
+                        </div>
+                        {commune.data.has_stop_desk ? (
+                          <CheckCircle className="w-4 h-4 text-green-500" />
+                        ) : (
+                          <XCircle className="w-4 h-4 text-red-500" />
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {showResults &&
+                filteredCommunes.length === 0 &&
+                searchTerm.length > 0 && (
+                  <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg p-4 text-center text-gray-500">
+                    No communes found matching &quot;{searchTerm}&quot;
+                  </div>
+                )}
+            </div>
+
+            {searchTerm && (
+              <button
+                onClick={clearSelection}
+                className="mt-2 text-sm text-blue-600 hover:text-blue-800"
+              >
+                Clear search
+              </button>
+            )}
+          </CardContent>
+        </Card>
+
+        {selectedCommune && (
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <MapPin className="w-5 h-5" />
+                Commune Details
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-xl font-semibold">
+                    {selectedCommune.data.nom}
+                  </h3>
+                  <div className="flex gap-2 mt-2">
+                    <Badge variant="outline">
+                      Wilaya {selectedCommune.data.wilaya_id}
+                    </Badge>
+                    <Badge variant="outline">
+                      {selectedCommune.data.code_postal}
+                    </Badge>
+                  </div>
+                </div>
+
+                {selectedCommune.data.has_stop_desk ? (
+                  <Alert className="border-green-200 bg-green-50">
+                    <CheckCircle className="w-4 h-4 text-green-600" />
+                    <AlertDescription className="text-green-800">
+                      <strong>✓ Stop Desk Available</strong>
+                      <br />
+                      This commune has a stop desk service.
+                    </AlertDescription>
+                  </Alert>
+                ) : (
+                  <Alert className="border-red-200 bg-red-50">
+                    <XCircle className="w-4 h-4 text-red-600" />
+                    <AlertDescription className="text-red-800">
+                      <strong>✗ No Stop Desk</strong>
+                      <br />
+                      This commune does not have a stop desk service.
+                    </AlertDescription>
+                  </Alert>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        <div className="mt-8 text-center text-sm text-gray-500">
+          <p>
+            Data includes {Object.keys(communeData).length} communes from
+            Algeria
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
