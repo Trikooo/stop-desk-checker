@@ -1,0 +1,181 @@
+{
+  "1": [
+    { "name": "Adrar", "postalCode": "101", "mapsLink": "https://maps.app.goo.gl/Kevr8mEok3CjrM4k7" }
+  ],
+  "2": [
+    { "name": "Chlef", "postalCode": "201", "mapsLink": "https://maps.app.goo.gl/SDfpXaNYq4ixTU1NA" }
+  ],
+  "3": [
+    { "name": "Laghouat", "postalCode": "301", "mapsLink": "https://maps.app.goo.gl/joV55YyWoZDvGUYXA" }
+  ],
+  "4": [
+    { "name": "Ain Fekroune", "postalCode": "425", "mapsLink": "https://maps.app.goo.gl/E8XopQf45vHFtBTBA" },
+    { "name": "Oum El Bouaghi", "postalCode": "401", "mapsLink": "https://maps.app.goo.gl/T2VhLd6sqjHXa3Mm9" }
+  ],
+  "5": [
+    { "name": "Batna", "postalCode": "501", "mapsLink": "https://maps.app.goo.gl/jBXKAWLVJt1jAGED9" }
+  ],
+  "6": [
+    { "name": "Akbou", "postalCode": "625", "mapsLink": "https://maps.app.goo.gl/QGgzG95inhM94Nsa9" },
+    { "name": "Bejaia", "postalCode": "601", "mapsLink": "https://maps.app.goo.gl/ApyFKiko45koaAcF7" }
+  ],
+  "7": [
+    { "name": "Biskra", "postalCode": "701", "mapsLink": "https://maps.app.goo.gl/pWjuwzZtxwCBmsCXA" }
+  ],
+  "8": [
+    { "name": "Bechar", "postalCode": "801", "mapsLink": "https://maps.google.com/?cid=6725298475309267754&entry=gps" }
+  ],
+  "9": [
+    { "name": "Blida", "postalCode": "901", "mapsLink": "https://maps.app.goo.gl/c1H9jRuvEMtQL1qU8" },
+    { "name": "Boufarik", "postalCode": "916", "mapsLink": "https://maps.app.goo.gl/zQ7hznXyDfqZvqaR7" }
+  ],
+  "10": [
+    { "name": "Bouira", "postalCode": "1001", "mapsLink": "https://maps.app.goo.gl/NH3HDeng6CjRtDH38" }
+  ],
+  "11": [
+    { "name": "Tamanrasset", "postalCode": "1101", "mapsLink": "https://maps.app.goo.gl/7gxTscWn7gUphKmCA" }
+  ],
+  "12": [
+    { "name": "Tebessa", "postalCode": "1201", "mapsLink": "https://maps.app.goo.gl/v234yBRjHazzHa4Z7" }
+  ],
+  "13": [
+    { "name": "Maghnia", "postalCode": "1327", "mapsLink": "https://maps.app.goo.gl/fcnvTmpUMJQUwvHP6" },
+    { "name": "Tlemcen", "postalCode": "1301", "mapsLink": "https://maps.app.goo.gl/pamSoCRj6UKN6nzC9" }
+  ],
+  "14": [
+    { "name": "Tiaret", "postalCode": "1401", "mapsLink": "https://maps.app.goo.gl/2Hmm6EbkmRepi1qJ6" }
+  ],
+  "15": [
+    { "name": "Tizi Ouzou", "postalCode": "1501", "mapsLink": "https://maps.app.goo.gl/f7vuHqqZMM1pE8gY7" }
+  ],
+  "16": [
+    { "name": "Ain Benian", "postalCode": "1657", "mapsLink": "https://maps.app.goo.gl/GJ7hrCKkuFwPa2td6" },
+    { "name": "Alger Centre", "postalCode": "1601", "mapsLink": "https://maps.app.goo.gl/pM8Wmuk6G4RfWH156" },
+    { "name": "Bab El Oued", "postalCode": "1605", "mapsLink": "https://maps.app.goo.gl/YsrghdqPEL8zTJ2DA" },
+    { "name": "Bordj El Bahri", "postalCode": "1642", "mapsLink": "https://maps.app.goo.gl/nABzBDj2jBCJhThRA?g_st=ac" },
+    { "name": "Cheraga", "postalCode": "1652", "mapsLink": "https://maps.app.goo.gl/NAypStQNztcf4YHJ8" },
+    { "name": "Draria", "postalCode": "1649", "mapsLink": "https://maps.app.goo.gl/fYaK4Hx9HN9jxR289" },
+    { "name": "Kouba", "postalCode": "1618", "mapsLink": "https://maps.app.goo.gl/6mrRCG2MejbHKSRG6" },
+    { "name": "Oued Smar", "postalCode": "1615", "mapsLink": "https://maps.app.goo.gl/i1rqNV82tMMbz178A" },
+    { "name": "Reghaia", "postalCode": "1640", "mapsLink": "https://maps.app.goo.gl/WpXC8CiRpuFs73ap6" }
+  ],
+  "17": [
+    { "name": "Ain Oussera", "postalCode": "1731", "mapsLink": "https://maps.app.goo.gl/b2VrRGbqetk6domY7" },
+    { "name": "Djelfa", "postalCode": "1701", "mapsLink": "https://maps.app.goo.gl/8bSbqKg6bnhnatwa7" }
+  ],
+  "18": [
+    { "name": "Jijel", "postalCode": "1801", "mapsLink": "https://maps.app.goo.gl/N6erwRkBpCDSDRS77?g_st=aw" }
+  ],
+  "19": [
+    { "name": "Ain Oulmane", "postalCode": "1928", "mapsLink": "https://maps.app.goo.gl/D8K2VM28UZzqK7i4A" },
+    { "name": "El Eulma", "postalCode": "1920", "mapsLink": "https://maps.app.goo.gl/kJSzahwmmf28nRKN9" },
+    { "name": "Setif", "postalCode": "1901", "mapsLink": "https://maps.app.goo.gl/XAo5BCutR9cFQiqt9" }
+  ],
+  "20": [
+    { "name": "Saida", "postalCode": "2001", "mapsLink": "https://maps.app.goo.gl/FEyhTrNpCCkFDSN17" }
+  ],
+  "21": [
+    { "name": "Skikda", "postalCode": "2101", "mapsLink": "https://maps.app.goo.gl/79nBN8fejJDFzF337" }
+  ],
+  "22": [
+    { "name": "Sidi Bel Abbes", "postalCode": "2201", "mapsLink": "https://maps.app.goo.gl/KF1UUan4mkFdZiqW8" }
+  ],
+  "23": [
+    { "name": "Annaba", "postalCode": "2301", "mapsLink": "https://maps.app.goo.gl/4cfHVYAG2Y9sPiUt6" },
+    { "name": "El Bouni", "postalCode": "2305", "mapsLink": "https://maps.app.goo.gl/27joVpiJh6vSsVbM7" }
+  ],
+  "24": [
+    { "name": "Guelma", "postalCode": "2401", "mapsLink": "https://maps.app.goo.gl/aKTcHnV1nK3jVvsf9" }
+  ],
+  "25": [
+    { "name": "Constantine", "postalCode": "2501", "mapsLink": "https://maps.app.goo.gl/KkKkPqb2t2NKohp79" },
+    { "name": "El Khroub", "postalCode": "2506", "mapsLink": "https://maps.app.goo.gl/tZCbG7DbuT5mVZBg9" }
+  ],
+  "26": [
+    { "name": "Medea", "postalCode": "2601", "mapsLink": "https://maps.app.goo.gl/GjostwpbdueGbkbc7" }
+  ],
+  "27": [
+    { "name": "Hadjadj", "postalCode": "2714", "mapsLink": "" },
+    { "name": "Mostaganem", "postalCode": "2701", "mapsLink": "https://maps.app.goo.gl/aKVAqakYTnQwkanQ7" }
+  ],
+  "28": [
+    { "name": "M'sila", "postalCode": "2801", "mapsLink": "https://maps.app.goo.gl/E2yAC875kUhSbsVLA" }
+  ],
+  "29": [
+    { "name": "Mascara", "postalCode": "2901", "mapsLink": "https://maps.app.goo.gl/ZpzcQAuJLvbiZ5mj9" },
+    { "name": "Sig", "postalCode": "2926", "mapsLink": "https://maps.app.goo.gl/tjSMK5aH28Nz4YP27" }
+  ],
+  "30": [
+    { "name": "Hassi Messaoud", "postalCode": "3004", "mapsLink": "https://maps.app.goo.gl/LzZkr8ZN98zfic3c7?g_st=com.google.maps.preview.copy" },
+    { "name": "Ouargla", "postalCode": "3001", "mapsLink": "https://maps.app.goo.gl/wD6AozcxRHMKkzVd6" }
+  ],
+  "31": [
+    { "name": "Bir El Djir", "postalCode": "3103", "mapsLink": "" },
+    { "name": "Oran", "postalCode": "3101", "mapsLink": "https://maps.app.goo.gl/1ZRXiQAdNZ614wdv9" }
+  ],
+  "32": [
+    { "name": "El Bayadh", "postalCode": "3201", "mapsLink": "https://maps.app.goo.gl/KgHB2oC6sdLnrpvq9" }
+  ],
+  "33": [
+    { "name": "Illizi", "postalCode": "3301", "mapsLink": "" },
+    { "name": "In Amenas", "postalCode": "3306", "mapsLink": "" }
+  ],
+  "34": [
+    { "name": "Bordj Bou Arreridj", "postalCode": "3401", "mapsLink": "https://maps.app.goo.gl/BmThUcC3DyXN3iev5" }
+  ],
+  "35": [
+    { "name": "Bordj Menaiel", "postalCode": "3504", "mapsLink": "https://maps.app.goo.gl/2VwB9uf8UUkNZ8X29" },
+    { "name": "Boumerdes", "postalCode": "3501", "mapsLink": "https://maps.app.goo.gl/zZfPsCamGiC7ozFC8" }
+  ],
+  "36": [
+    { "name": "Besbes", "postalCode": "3616", "mapsLink": "" }
+  ],
+  "38": [
+    { "name": "Tissemsilt", "postalCode": "3801", "mapsLink": "https://maps.app.goo.gl/Msq4C7BMfwEzGE8k9" }
+  ],
+  "39": [
+    { "name": "El Oued", "postalCode": "3901", "mapsLink": "https://maps.app.goo.gl/f3Kb6hhuRrhG4cTG7" }
+  ],
+  "40": [
+    { "name": "Khenchela", "postalCode": "4001", "mapsLink": "https://maps.app.goo.gl/D236mQXeS7W3M3zu9" }
+  ],
+  "41": [
+    { "name": "Souk Ahras", "postalCode": "4101", "mapsLink": "https://maps.app.goo.gl/TqH5zjTjj4Vz6TUL8" }
+  ],
+  "42": [
+    { "name": "Hadjout", "postalCode": "4208", "mapsLink": "https://maps.app.goo.gl/9waJHFoTR8TaMkhD9" },
+    { "name": "Kolea", "postalCode": "4224", "mapsLink": "https://maps.app.goo.gl/54awEBbsBESD1MXP8" },
+    { "name": "Tipaza", "postalCode": "4201", "mapsLink": "https://maps.app.goo.gl/uTUTdsdDcuhvDLYF9" }
+  ],
+  "43": [
+    { "name": "Mila", "postalCode": "4301", "mapsLink": "https://maps.app.goo.gl/R73yv4iCMVXFe3n8A" }
+  ],
+  "44": [
+    { "name": "Ain Defla", "postalCode": "4401", "mapsLink": "https://maps.app.goo.gl/6SBakjyoN2onSejC6" }
+  ],
+  "45": [
+    { "name": "Mecheria", "postalCode": "4502", "mapsLink": "https://maps.app.goo.gl/ovUgUcTeVRouK5UJ9" }
+  ],
+  "46": [
+    { "name": "Ain Temouchent", "postalCode": "4601", "mapsLink": "https://maps.app.goo.gl/Fxm3xjdDvfJeBkxJ6" },
+    { "name": "Beni Saf", "postalCode": "4623", "mapsLink": "https://goo.gl/maps/9RAffHSBYydtCSia7" }
+  ],
+  "47": [
+    { "name": "Ghardaia", "postalCode": "4701", "mapsLink": "https://maps.app.goo.gl/wCv3pP8MN1ns5vxu7" }
+  ],
+  "48": [
+    { "name": "Relizane", "postalCode": "4801", "mapsLink": "https://maps.app.goo.gl/pNQS5RaN7UbpY4QAA?g_st=awb" }
+  ],
+  "51": [
+    { "name": "Ouled Djellal", "postalCode": "5101", "mapsLink": "https://maps.app.goo.gl/3CCeZ4mXr4iboST76" }
+  ],
+  "53": [
+    { "name": "In Salah", "postalCode": "5301", "mapsLink": "https://maps.app.goo.gl/BUhvtHXMYAEKWZrv9" }
+  ],
+  "55": [
+    { "name": "Touggourt", "postalCode": "5501", "mapsLink": "https://maps.app.goo.gl/CRwB8UQviohgDARe6" }
+  ],
+  "56": [
+    { "name": "Djanet", "postalCode": "5601", "mapsLink": "" }
+  ]
+}
